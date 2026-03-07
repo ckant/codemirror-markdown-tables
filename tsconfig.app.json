@@ -1,0 +1,42 @@
+{
+  "extends": "@tsconfig/svelte/tsconfig.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "forceConsistentCasingInFileNames": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "paths": {
+      "#api/*": ["src/lib/api/*"],
+      "#codemirror/*": ["src/lib/codemirror/*"],
+      "#componentActions/*": ["src/lib/componentActions/*"],
+      "#componentModels/*": ["src/lib/componentModels/*"],
+      "#components/*": ["src/lib/components/*"],
+      "#core/*": ["src/lib/core/*"],
+      "#ext/*": ["src/lib/ext/*"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js",
+    "src/**/*.svelte",
+    "test/**/*.ts",
+    "test/**/*.js",
+    "test/**/*.svelte",
+    "testSupport/**/*.ts",
+    "testSupport/**/*.js",
+    "testSupport/**/*.svelte"
+  ]
+}
