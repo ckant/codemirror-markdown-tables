@@ -34,8 +34,8 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies
         run: npm ci
-      - name: Build dist
-        run: npm run dist
+      - name: Build
+        run: npm run build
   test:
     runs-on: ubuntu-latest
     steps:
