@@ -29,7 +29,7 @@
   <a href="#license">License</a>
 </p>
 
-<div align="center"><img src="https://raw.githubusercontent.com/ckant/codemirror-markdown-tables/main/media/preview.gif" alt="preview" width="88%"></div>
+<div align="center"><img src="https://raw.githubusercontent.com/ckant/codemirror-markdown-tables/main/media/preview.gif" alt="preview"></div>
 
 ## Features
 
