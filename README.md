@@ -312,7 +312,7 @@ const customStyle = TableStyle.default.with({
 
 ```css
 :root {
-  --tbl-style-font-family: "Comic Sans, sans-serif";
+  --tbl-style-font-family: "Comic Sans", sans-serif;
   --tbl-style-font-size: 16px;
 }
 ```
