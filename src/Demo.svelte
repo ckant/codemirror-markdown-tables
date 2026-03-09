@@ -58,6 +58,8 @@
     | Zoidberg   | John       | 87  | Doctor         | Billy West    |
   `
 
+  const smallWindow = !window.matchMedia("(min-width: 768px)").matches
+
   const themeBackgrounds = {
     light: "#ffffff",
     dark: "#1d2024",
@@ -102,6 +104,8 @@
   let fontName = $state(defaultFontName)
 
   const showSidebar = QueryParameters.getBoolOrNil("sidebar") ?? true
+
+  let sidebar = $state(showSidebar ? (smallWindow ? "closed" : "open") : "hidden")
 
   let element: HTMLElement
 
@@ -308,8 +312,22 @@
 </script>
 
 <main bind:this={element}></main>
-{#if showSidebar}
+{#if sidebar === "open"}
   <div class={["sidebar", mode]}>
+    <button class="close-button" title="Close config" onclick={() => (sidebar = "closed")}>
+      <!-- [Phosphor Icons](phosphoricons.com) | [License: MIT](github.com/phosphor-icons/core/blob/main/LICENSE) -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="currentColor"
+        viewBox="0 0 256 256"
+        ><path
+          d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"
+        ></path></svg
+      >
+    </button>
+
     <h1>Config</h1>
     <h2>theme</h2>
     <select aria-label="theme" name="theme" bind:value={themeName}>
@@ -360,6 +378,21 @@
       inside
     </label>
   </div>
+{:else if sidebar === "closed"}
+  <button class={["open-button", mode]} title="Open config" onclick={() => (sidebar = "open")}>
+    <!-- [Phosphor Icons](phosphoricons.com) | [License: MIT](github.com/phosphor-icons/core/blob/main/LICENSE) -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      fill="currentColor"
+      viewBox="0 0 256 256"
+    >
+      <path
+        d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"
+      ></path>
+    </svg>
+  </button>
 {/if}
 
 <style>
@@ -387,8 +420,28 @@
       min-width: 0;
     }
 
+    .open-button {
+      position: absolute;
+      top: 8px;
+      left: calc(100% - 32px);
+      opacity: 50%;
+      cursor: pointer;
+      color: var(--color);
+
+      &.light {
+        --color: #000000;
+      }
+      &.dark {
+        --color: #f0f6fc;
+      }
+      &:hover {
+        opacity: 100%;
+      }
+    }
+
     .sidebar {
       display: flex;
+      position: relative;
       flex-grow: 1;
       flex-direction: column;
       background-color: var(--background-color);
@@ -414,6 +467,19 @@
       &.dark {
         --background-color: rgb(255 255 255 / 10%);
         --color: #f0f6fc;
+      }
+
+      .close-button {
+        position: absolute;
+        top: 8px;
+        left: calc(100% - 32px);
+        opacity: 25%;
+        cursor: pointer;
+        color: var(--color);
+
+        &:hover {
+          opacity: 100%;
+        }
       }
 
       h1 {
@@ -445,7 +511,18 @@
 
       select {
         padding-left: 0.5em;
+        width: fit-content;
       }
+    }
+
+    button {
+      appearance: none;
+      margin: 0;
+      border: none;
+      background: transparent;
+      padding: 0;
+      line-height: 1.4;
+      font-family: inherit;
     }
   }
 </style>
