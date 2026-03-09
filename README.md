@@ -129,7 +129,7 @@
 
 ### Autocompletion
 
-**An convenient autocomplete menu for creating tables**
+**A convenient autocomplete menu for creating tables**
 
 - Pops up a CodeMirror autocompletion menu after typing `|` on an empty line
 - Displays a customizable list of table size options
